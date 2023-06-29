@@ -15,17 +15,19 @@ export default function ExpenseTracker() {
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
   const [updateData, setUpdateData] = useState(null);
+  
   async function fetchData() {
     const response = await axios.get("http://localhost:3000/getData");
     const data = response.data;
     const fetchedExpenses = [];
+    if(userId==response.data.userId){}
     for (const key in data) {
-      fetchedExpenses.push({
+      if(data[key].userId==userId){fetchedExpenses.push({
         id: data[key].id,
         amount: data[key].amount,
         description: data[key].description,
         category: data[key].category,
-      });
+      });}
     }
     setExpenses(fetchedExpenses);
   }
@@ -44,7 +46,7 @@ export default function ExpenseTracker() {
     const descriptionInput = formRef.current.elements.description.value;
     const categoryInput = formRef.current.elements.category.value;
     // console.log(amountInput, descriptionInput, categoryInput);
-    // event.target.reset();
+    event.target.reset();
 
     const expenseData = {
       amount: parseInt(amountInput),
@@ -66,10 +68,8 @@ export default function ExpenseTracker() {
         expenseData
       );
       // console.log(updateData)
-      setUpdateData(null)
+      setUpdateData(null);
     }
-    
-
     fetchData();
   }
 
@@ -78,22 +78,7 @@ export default function ExpenseTracker() {
     setExpenses((prevExpenses) =>
       prevExpenses.filter((expense) => expense.id !== expenseId)
     );
-    fetch(
-      `https://authanticate-form-default-rtdb.firebaseio.com/user/${changedemail}.json`,
-      {
-        method: "DELETE",
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          console.log("Expense deleted successfully!");
-        } else {
-          console.log("Failed to delete expense");
-        }
-      })
-      .catch((error) => {
-        console.log("Error occurred while deleting expense:", error);
-      });
+    axios.delete(`http://localhost:3000/getData/${expenseId}`);
   };
   const editbtnhandler = (expenseId) => {
     //   findind the specific object  which needs to populate
@@ -180,7 +165,7 @@ export default function ExpenseTracker() {
               type="submit"
               className="bg-cyan-500 text-white font-medium py-2 px-4 rounded hover:bg-green-800"
             >
-              {updateData? "Update" : "Submit"}
+              {updateData ? "Update" : "Submit"}
             </button>
             <div className="text-center mt-4 ">
               <span className="text-2xl font-medium text-gray-100 bg-green-600 px-3 py-3">
@@ -265,7 +250,7 @@ export default function ExpenseTracker() {
               type="submit"
               className="bg-indigo-600 text-white font-medium py-2 px-4 rounded hover:bg-green-700"
             >
-              {updateData? "Update" : "Submit"}
+              {updateData ? "Update" : "Submit"}
             </button>
             <div className="text-center mt-4">
               <span className="text-2xl font-medium bg-indigo-600 px-3 py-3">

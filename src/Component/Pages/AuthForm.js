@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect } from "react";
-import { useState, useRef, useContext } from "react";
+import React, { useEffect } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
@@ -81,53 +81,7 @@ export default function AuthForm() {
         });
     }
 
-    // if (enteredPassword === confirmPassword) {
-    //   setIsLoading(true);
-    //   let url;
-    //   if (isLogin) {
-    //     url =
-    //       "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDXx5szR2zhd9OQlqBegt7PJUE8RXQAqAk";
-    //   } else {
-    //     url =
-    //       "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDXx5szR2zhd9OQlqBegt7PJUE8RXQAqAk";
-    //   }
-    //   fetch(url, {
-    //     method: "POST",
-    //     body: JSON.stringify({
-    //       email: enteredEmail,
-    //       password: enteredPassword,
-          
-    //     }),
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   })
-    //     .then((response) => {
-    //       setIsLoading(false);
-    //       if (response.ok) {
-    //         console.log("User Successfully Login", response);
-    //         return response.json();
-    //       } else {
-    //         //The responde holds error
-    //         return response.json().then((data) => {
-    //           let errorMessage =
-    //             "Authentication Failed,please Check input field";
-
-    //           throw new Error(errorMessage);
-    //         });
-    //       }
-    //     })
-    //     .then((data) => {
-    //       dispatch(authActions.islogin(data.idToken));
-    //       console.log(isLoggedIn);
-
-    //       navigate("/loggedin");
-    //     })
-
-    //     .catch((err) => {
-    //       alert(err.message);
-    //     });
-    // } 
+     
   };
 
   useEffect(() => {

@@ -14,6 +14,7 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.isPremium = false;
       localStorage.removeItem("token");
+      localStorage.removeItem("userId");
     },
     ispremium(state, action) {
       if (action.payload > 1000 ) {
