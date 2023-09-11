@@ -16,7 +16,7 @@ export default function Navbar() {
     dispatch(authActions.islogout());
 
     // authCtx.logout();
-    navigate("/Expensetracker-using-React");
+    navigate("/");
   };
 
   const toggleHandler = () => {

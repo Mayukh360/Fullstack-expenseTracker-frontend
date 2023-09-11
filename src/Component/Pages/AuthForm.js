@@ -32,7 +32,7 @@ export default function AuthForm() {
 
     localStorage.setItem("email", enteredEmail);
     const name=nameInputRef.current.value;
-    const email = passwordInputRef.current.value;
+    const email = emailInputRef.current.value;
     const password = confirmPasswordInputRef.current.value;
     // console.log(enteredName,enteredEmail, enteredPassword, confirmPassword);
 

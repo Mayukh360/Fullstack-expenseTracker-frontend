@@ -10,24 +10,25 @@ export default function ExpenseTracker() {
   const dispatch = useDispatch();
   const [expenses, setExpenses] = useState([]);
   const isToggle = useSelector((state) => state.auth.darkToggle);
-  const enteredEmail = localStorage.getItem("email");
-  const changedemail = enteredEmail.replace("@", "").replace(".", "");
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
   const [updateData, setUpdateData] = useState(null);
-  
+
   async function fetchData() {
     const response = await axios.get("http://localhost:3000/getData");
     const data = response.data;
     const fetchedExpenses = [];
-    if(userId==response.data.userId){}
+    if (userId == response.data.userId) {
+    }
     for (const key in data) {
-      if(data[key].userId==userId){fetchedExpenses.push({
-        id: data[key].id,
-        amount: data[key].amount,
-        description: data[key].description,
-        category: data[key].category,
-      });}
+      if (data[key].userId == userId) {
+        fetchedExpenses.push({
+          id: data[key].id,
+          amount: data[key].amount,
+          description: data[key].description,
+          category: data[key].category,
+        });
+      }
     }
     setExpenses(fetchedExpenses);
   }
